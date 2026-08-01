@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-fontsize="normal">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EngMastery - English Learning Hub</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- 🎨 Global Header Toolbar -->
+  <header class="app-header">
+    <div class="brand" id="brand-home-btn" title="Return to Dashboard">
+      <div class="brand-icon">📚</div>
+      <div class="brand-title">Eng<span>Mastery</span></div>
+    </div>
+
+    <div class="header-controls">
+      <!-- 🎨 Theme Switcher -->
+      <div class="control-group">
+        <span class="control-label">🎨 Theme:</span>
+        <select id="theme-select" class="select-dropdown" aria-label="Select Theme">
+          <option value="light">☀️ Light Mode</option>
+          <option value="dark">🌙 Dark Mode</option>
+          <option value="eye-care">📜 Eye-Care Mode</option>
+          <option value="pink">🌸 Pink Theme</option>
+          <option value="purple">💜 Purple Theme</option>
+          <option value="green">🌿 Green Theme</option>
+          <option value="blue">💙 Blue Theme</option>
+        </select>
+      </div>
+
+      <!-- 🔤 Font Size Adjuster -->
+      <div class="control-group">
+        <span class="control-label">🔤 Size:</span>
+        <div class="btn-toggle-group">
+          <button class="btn-toggle-opt" data-size="small" title="Small Font (14px)">Small</button>
+          <button class="btn-toggle-opt active" data-size="normal" title="Normal Font (16px)">Normal</button>
+          <button class="btn-toggle-opt" data-size="big" title="Big Font (18px)">Big</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🏠 Main App Container -->
+  <main class="main-container">
+
+    <!-- ==================== VIEW 1: HOME DASHBOARD ==================== -->
+    <section id="home-view" class="view-section active">
+      <!-- Hero Banner -->
+      <div class="hero-banner">
+        <div class="hero-welcome">
+          <h1>Welcome to EngMastery 👋</h1>
+          <p>Master English Phrasal Verbs interactively through visual mind-maps, native audio pronunciation, and native Thai translations.</p>
+          
+          <div class="quote-box">
+            <span>💡</span>
+            <p id="daily-quote">"Learning another language is like becoming another person." – Haruki Murakami</p>
+          </div>
+        </div>
+
+        <div class="progress-summary-card">
+          <div class="progress-header">
+            <span class="progress-title">📈 Learning Summary</span>
+            <span class="badge badge-active" id="mastered-count-badge">0 Mastered</span>
+          </div>
+
+          <div class="stat-grid">
+            <div class="stat-item">
+              <div class="stat-value" id="stat-verbs-count">12</div>
+              <div class="stat-label">Base Verbs</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="stat-phrasal-count">80+</div>
+              <div class="stat-label">Phrasal Verbs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Learning Modules Grid -->
+      <h2 class="section-title">🚀 Learning Modules</h2>
+      <div class="modules-grid">
+        <!-- Module 1: Phrasal Verbs (Active) -->
+        <div class="module-card active" id="module-phrasal-verbs">
+          <div>
+            <div class="module-icon">🔁</div>
+            <div class="module-title">Phrasal Verbs</div>
+            <div class="module-desc">Explore radial mind-maps for 12 primary verbs with pronunciation & Thai readings.</div>
+          </div>
+          <div>
+            <span class="badge badge-active">Active Module</span>
+          </div>
+        </div>
+
+        <!-- Module 2: Essential Idioms (Disabled) -->
+        <div class="module-card disabled">
+          <div>
+            <div class="module-icon">💡</div>
+            <div class="module-title">Essential Idioms</div>
+            <div class="module-desc">Learn native English idioms and expressions used in daily conversations.</div>
+          </div>
+          <div>
+            <span class="badge badge-soon">Coming Soon</span>
+          </div>
+        </div>
+
+        <!-- Module 3: Daily Vocabulary (Disabled) -->
+        <div class="module-card disabled">
+          <div>
+            <div class="module-icon">📖</div>
+            <div class="module-title">Daily Vocabulary</div>
+            <div class="module-desc">Expand your active vocabulary with high-frequency topic word lists.</div>
+          </div>
+          <div>
+            <span class="badge badge-soon">Coming Soon</span>
+          </div>
+        </div>
+
+        <!-- Module 4: Grammar Essentials (Disabled) -->
+        <div class="module-card disabled">
+          <div>
+            <div class="module-icon">✍️</div>
+            <div class="module-title">Grammar Essentials</div>
+            <div class="module-desc">Clear, bite-sized English grammar rules and usage examples.</div>
+          </div>
+          <div>
+            <span class="badge badge-soon">Coming Soon</span>
+          </div>
+        </div>
+
+        <!-- Module 5: Listening & Pronunciation (Disabled) -->
+        <div class="module-card disabled">
+          <div>
+            <div class="module-icon">🎧</div>
+            <div class="module-title">Listening & Pronunciation</div>
+            <div class="module-desc">Practice listening comprehension with native voice playback drills.</div>
+          </div>
+          <div>
+            <span class="badge badge-soon">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== VIEW 2: VERB SELECTION SCREEN ==================== -->
+    <section id="verbs-selection-view" class="view-section">
+      <div class="verbs-grid-container">
+        <div class="verbs-grid-header">
+          <h2>Select a Base Verb to Study 🎯</h2>
+          <p>Click any verb below to launch its interactive circular mind-map view.</p>
+        </div>
+
+        <div class="verb-cards-grid" id="base-verbs-grid">
+          <!-- Dynamically populated from data.js -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==================== VIEW 3: INTERACTIVE STUDY VIEW ==================== -->
+    <section id="verbs-study-view" class="view-section">
+      <div class="study-layout">
+        
+        <!-- Left Collapsible Sidebar -->
+        <aside class="study-sidebar">
+          <div class="sidebar-header">
+            <span class="sidebar-title">Base Verbs</span>
+            <button class="btn-back-grid" id="btn-back-grid" title="Back to Base Verbs Grid">
+              <span>👈</span> Grid
+            </button>
+          </div>
+
+          <ul class="sidebar-nav-list" id="sidebar-verbs-list">
+            <!-- Dynamically populated with hover pop-out items -->
+          </ul>
+        </aside>
+
+        <!-- Central Mind-Map Workspace -->
+        <main class="mindmap-workspace">
+          <div class="mindmap-top-bar">
+            <div class="verb-info-tag">
+              <h3 id="current-verb-title">Run</h3>
+              <span id="current-verb-desc">(วิ่ง / ดำเนินการ)</span>
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-weight: 600;">
+              💡 Click any node for detailed card
+            </span>
+          </div>
+
+          <!-- Mind-Map Stage -->
+          <div class="mindmap-stage" id="mindmap-stage">
+            <!-- SVG connector lines -->
+            <svg class="mindmap-svg-lines" id="mindmap-lines"></svg>
+            
+            <!-- Central Base Node -->
+            <div class="center-node" id="center-base-node">
+              <span class="center-node-title" id="center-node-text">RUN</span>
+              <span class="center-node-subtitle" id="center-node-count">8 nodes</span>
+            </div>
+
+            <!-- Radial sub-nodes will be generated dynamically here -->
+          </div>
+        </main>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== SLIDE-IN DETAIL PANEL DRAWER ==================== -->
+  <div class="drawer-backdrop" id="drawer-backdrop"></div>
+
+  <div class="detail-panel" id="detail-panel">
+    <div class="detail-header">
+      <span style="font-weight: 800; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">
+        Phrasal Verb Details
+      </span>
+      <button class="btn-close-detail" id="btn-close-detail" title="Close Panel">✕</button>
+    </div>
+
+    <div class="detail-card-content">
+      <!-- Title & Phonetic Group -->
+      <div class="detail-title-group">
+        <div class="detail-verb-title" id="detail-verb-title">run into</div>
+        <div class="phonetic-row">
+          <span class="phonetic-text" id="detail-phonetic">/rʌn ˈɪn.tuː/</span>
+          <button class="btn-audio" id="btn-audio-verb" title="Listen Pronunciation">🔊</button>
+        </div>
+      </div>
+
+      <!-- Thai Phonetic Reading -->
+      <div class="detail-section">
+        <div class="detail-section-label">คำอ่านไทย (Thai Phonetic)</div>
+        <span class="thai-phonetic-badge" id="detail-thai-phonetic">รัน อินทู</span>
+      </div>
+
+      <!-- Thai Translation -->
+      <div class="detail-section">
+        <div class="detail-section-label">คำแปลไทย (Meaning)</div>
+        <div class="thai-translation-text" id="detail-thai-translation">บังเอิญเจอ / พบโดยไม่ตั้งใจ</div>
+      </div>
+
+      <!-- Example Sentences -->
+      <div class="detail-section">
+        <div class="detail-section-label">ตัวอย่างประโยค (Example Sentence)</div>
+        <div class="example-box">
+          <div class="example-en">
+            <span id="detail-example-en">"I ran into my old teacher at the supermarket."</span>
+            <button class="btn-audio" id="btn-audio-sentence" style="width: 32px; height: 32px; font-size: 0.9rem;" title="Listen Sentence">🔊</button>
+          </div>
+          <div class="example-th" id="detail-example-th">ฉันบังเอิญเจอคุณครูเก่าที่ซูเปอร์มาร์เก็ต</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions Footer -->
+    <div class="detail-actions">
+      <button class="btn-action btn-mastered" id="btn-toggle-mastered">
+        <span>⭐</span> <span id="mastered-btn-text">Mark as Mastered</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
