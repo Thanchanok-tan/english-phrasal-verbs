@@ -217,12 +217,17 @@ document.addEventListener('DOMContentLoaded', () => {
     switchView(verbsStudyView, updateHash);
   }
 
-  // 🌀 Generate Circular Mind-Map with Radial Positioning
+  // 🌀 Generate Circular Mind-Map with Radial Positioning & Mobile Card Tree List
   function renderRadialMindMap(items) {
-    // Remove existing sub-nodes
+    // Remove existing desktop sub-nodes & lines
     const existingNodes = mindmapStage.querySelectorAll('.sub-node');
     existingNodes.forEach(node => node.remove());
     mindmapLinesSvg.innerHTML = '';
+
+    const mindmapMobileList = document.getElementById('mindmap-mobile-list');
+    if (mindmapMobileList) {
+      mindmapMobileList.innerHTML = '';
+    }
 
     const centerNode = document.getElementById('center-base-node');
     const stageWidth = 550;
@@ -248,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
       line.setAttribute('class', 'mindmap-line');
       mindmapLinesSvg.appendChild(line);
 
-      // Create Sub-Node Element
+      // Create Desktop Sub-Node Element
       const subNode = document.createElement('div');
       subNode.className = `sub-node ${masteredItems.includes(item.id) ? 'active' : ''}`;
       subNode.style.left = `${subX - 65}px`; // Offset by half width
@@ -265,6 +270,26 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       mindmapStage.appendChild(subNode);
+
+      // 📱 Create Mobile Card Tree Element
+      if (mindmapMobileList) {
+        const mobileCard = document.createElement('div');
+        mobileCard.className = `mobile-verb-card ${masteredItems.includes(item.id) ? 'active' : ''}`;
+        mobileCard.innerHTML = `
+          <div class="mobile-verb-left">
+            <div class="mobile-verb-icon">${item.icon}</div>
+            <div>
+              <div class="mobile-verb-title">${item.verb}</div>
+              <div class="mobile-verb-def">${item.quickDef} • ${item.thaiTranslation}</div>
+            </div>
+          </div>
+          <div class="mobile-verb-arrow">➔</div>
+        `;
+        mobileCard.addEventListener('click', () => {
+          openDetailPanel(item);
+        });
+        mindmapMobileList.appendChild(mobileCard);
+      }
     });
   }
 
