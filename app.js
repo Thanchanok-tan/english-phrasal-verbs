@@ -92,21 +92,53 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 2. View Navigation Engine
+  // 2. View Navigation Engine & Hash Router
   // ==========================================
 
-  function switchView(targetView) {
+  function switchView(targetView, updateHash = true) {
     [homeView, verbsSelectionView, verbsStudyView].forEach(view => {
       view.classList.remove('active');
     });
 
     targetView.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (updateHash) {
+      let hash = '#home';
+      if (targetView === verbsSelectionView) hash = '#selection';
+      else if (targetView === verbsStudyView) hash = `#study/${currentBaseVerbKey}`;
+      
+      if (window.location.hash !== hash) {
+        window.location.hash = hash;
+      }
+      localStorage.setItem('engmastery_last_hash', hash);
+    }
   }
 
   brandHomeBtn.addEventListener('click', () => switchView(homeView));
   modulePhrasalVerbs.addEventListener('click', () => switchView(verbsSelectionView));
   btnBackGrid.addEventListener('click', () => switchView(verbsSelectionView));
+
+  // 🔄 Hash Change Router (Prevents resetting to Home on refresh & enables back/forward navigation)
+  function handleHashChange() {
+    let hash = window.location.hash || localStorage.getItem('engmastery_last_hash') || '#home';
+    
+    if (hash.startsWith('#study/')) {
+      const verbKey = hash.replace('#study/', '').toLowerCase();
+      if (PHRASAL_VERBS_DATA[verbKey]) {
+        openStudyView(verbKey, false);
+      } else {
+        openStudyView('run', false);
+      }
+    } else if (hash === '#selection') {
+      switchView(verbsSelectionView, false);
+    } else {
+      switchView(homeView, false);
+    }
+    localStorage.setItem('engmastery_last_hash', hash);
+  }
+
+  window.addEventListener('hashchange', handleHashChange);
 
 
   // ==========================================
@@ -163,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 4. Open Interactive Study View & Circular Mind-Map
   // ==========================================
 
-  function openStudyView(verbKey) {
+  function openStudyView(verbKey, updateHash = true) {
     currentBaseVerbKey = verbKey;
     const verbData = PHRASAL_VERBS_DATA[verbKey];
 
@@ -182,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderSidebar();
 
     // Switch View
-    switchView(verbsStudyView);
+    switchView(verbsStudyView, updateHash);
   }
 
   // 🌀 Generate Circular Mind-Map with Radial Positioning
@@ -338,5 +370,6 @@ document.addEventListener('DOMContentLoaded', () => {
   renderBaseVerbsGrid();
   renderSidebar();
   updateMasteredButtonState();
+  handleHashChange(); // Restores exact view & verb state from URL hash or localStorage after F5 refresh
 
 });
