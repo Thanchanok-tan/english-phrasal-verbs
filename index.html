@@ -196,7 +196,7 @@
             </span>
           </div>
 
-          <!-- Mind-Map Stage -->
+          <!-- Mind-Map Stage (Desktop/Tablet Radial Diagram) -->
           <div class="mindmap-stage" id="mindmap-stage">
             <!-- SVG connector lines -->
             <svg class="mindmap-svg-lines" id="mindmap-lines"></svg>
@@ -209,6 +209,11 @@
 
             <!-- Radial sub-nodes will be generated dynamically here -->
           </div>
+
+          <!-- Mobile Vertical Card Tree (Smartphones Fallback View) -->
+          <div class="mindmap-mobile-list" id="mindmap-mobile-list">
+            <!-- Dynamically populated on mobile -->
+          </div>
         </main>
 
       </div>
@@ -216,10 +221,11 @@
 
   </main>
 
-  <!-- ==================== SLIDE-IN DETAIL PANEL DRAWER ==================== -->
+  <!-- ==================== SLIDE-IN / BOTTOM-SHEET DETAIL PANEL DRAWER ==================== -->
   <div class="drawer-backdrop" id="drawer-backdrop"></div>
 
   <div class="detail-panel" id="detail-panel">
+    <div class="bottom-sheet-handle"></div>
     <div class="detail-header">
       <span style="font-weight: 800; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase;">
         Phrasal Verb Details
